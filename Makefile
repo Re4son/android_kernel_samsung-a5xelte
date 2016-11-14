@@ -386,7 +386,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security -Wno-logical-not-parentheses \
 		   -mtune=cortex-a53 \
-		   -std=gnu89
+		   -std=gnu89 $(call cc-option,-fno-PIE)
 
 # enable cpu specific flags
 KBUILD_CFLAGS	+= -pipe -mcpu=cortex-a53 -mtune=cortex-a53 -DERRATA_A53_835769 \
@@ -400,7 +400,7 @@ KBUILD_CFLAGS	+= -pipe -mcpu=cortex-a53 -mtune=cortex-a53 -DERRATA_A53_835769 \
 #        -Werror
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
-KBUILD_AFLAGS   := -D__ASSEMBLY__
+KBUILD_AFLAGS   := -D__ASSEMBLY__ $(call cc-option,-fno-PIE)
 KBUILD_AFLAGS_MODULE  := -DMODULE
 KBUILD_CFLAGS_MODULE  := -DMODULE
 KBUILD_LDFLAGS_MODULE := -T $(srctree)/scripts/module-common.lds
@@ -622,8 +622,6 @@ KBUILD_CFLAGS	+= $(call cc-disable-warning, format-truncation)
 KBUILD_CFLAGS	+= $(call cc-disable-warning, format-overflow)
 KBUILD_CFLAGS	+= $(call cc-disable-warning, int-in-bool-context)
 KBUILD_CFLAGS	+= $(call cc-disable-warning,maybe-uninitialized,)
-KBUILD_CFLAGS	+= $(call cc-option,-fno-PIE)
-KBUILD_AFLAGS	+= $(call cc-option,-fno-PIE)
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS	+= -Os
