@@ -125,8 +125,10 @@ error:
 }
 
 /*
- * Install a fresh thread keyring directly to new credentials.  This keyring is
- * allowed to overrun the quota.
+ * Install a thread keyring to the given credentials struct if it didn't have
+ * one already.  This is allowed to overrun the quota.
+ *
+ * Return: 0 if a thread keyring is now present; -errno on failure.
  */
 int install_thread_keyring_to_cred(struct cred *new)
 {
