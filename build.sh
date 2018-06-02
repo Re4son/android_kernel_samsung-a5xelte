@@ -2,7 +2,7 @@
 DTS=arch/arm64/boot/dts
 RDIR=$(pwd)
 # GCC
-export CROSS_COMPILE=/home/prashantp/aarch64-linux-android-4.9/bin/aarch64-linux-android-
+export CROSS_COMPILE=/home/prashantp/linaro-7.3.1/bin/aarch64-opt-linux-android-
 # Cleanup
 make clean && make mrproper
 # A510F NN Defcon

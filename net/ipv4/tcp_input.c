@@ -3456,8 +3456,6 @@ static int tcp_ack(struct sock *sk, const struct sk_buff *skb, int flag)
 
 	pkts_acked = previous_packets_out - tp->packets_out;
 
-<<<<<<< HEAD
-=======
 	if (tp->tlp_high_seq)
 		tcp_process_tlp_ack(sk, ack, flag);
 	/* If needed, reset TLP/RTO timer; RACK may later override this. */
