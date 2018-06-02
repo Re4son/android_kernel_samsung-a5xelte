@@ -2079,16 +2079,8 @@ find_vma_prev(struct mm_struct *mm, unsigned long addr,
  * update accounting. This is shared with both the
  * grow-up and grow-down cases.
  */
-<<<<<<< HEAD
-static int acct_stack_growth(struct vm_area_struct *vma, unsigned long size, unsigned long grow)
-=======
 static int acct_stack_growth(struct vm_area_struct *vma,
-<<<<<<< HEAD
-			    unsigned long size, unsigned long grow)
-=======
 			     unsigned long size, unsigned long grow)
->>>>>>> 3ebc21042... private mode fix, update to 3.10.107, afterburner v2.0.0
->>>>>>> 9db90dce3... update to 3.10.107
 {
 	struct mm_struct *mm = vma->vm_mm;
 	struct rlimit *rlim = current->signal->rlim;
@@ -2145,18 +2137,10 @@ int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 	if (!(vma->vm_flags & VM_GROWSUP))
 		return -EFAULT;
 
-<<<<<<< HEAD
 	/*
 	 * We must make sure the anon_vma is allocated
 	 * so that the anon_vma locking is not a noop.
 	 */
-=======
-<<<<<<< HEAD
-	/* Guard against wrapping around to address 0. */
-	address &= PAGE_MASK;
-	address += PAGE_SIZE;
-	if (!address)
-=======
 	/* Guard against exceeding limits of the address space. */
 	address &= PAGE_MASK;
 	if (address >= TASK_SIZE)
@@ -2179,7 +2163,6 @@ int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 
 	/* We must make sure the anon_vma is allocated. */
 	if (unlikely(anon_vma_prepare(vma)))
->>>>>>> 3ebc21042... private mode fix, update to 3.10.107, afterburner v2.0.0
 		return -ENOMEM;
 
 	/* Enforce stack_guard_gap */
@@ -2194,7 +2177,6 @@ int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 	}
 
 	/* We must make sure the anon_vma is allocated. */
->>>>>>> 9db90dce3... update to 3.10.107
 	if (unlikely(anon_vma_prepare(vma)))
 		return -ENOMEM;
 	vma_lock_anon_vma(vma);
@@ -2262,15 +2244,8 @@ int expand_upwards(struct vm_area_struct *vma, unsigned long address)
 int expand_downwards(struct vm_area_struct *vma,
 				   unsigned long address)
 {
-<<<<<<< HEAD
-=======
 	struct vm_area_struct *prev;
-<<<<<<< HEAD
-	unsigned long gap_addr;	
-=======
 	unsigned long gap_addr;
->>>>>>> 3ebc21042... private mode fix, update to 3.10.107, afterburner v2.0.0
->>>>>>> 9db90dce3... update to 3.10.107
 	int error;
 
 	/*
