@@ -1,0 +1,21 @@
+#import init.gps.rc
+
+on boot
+# IMS 6.0 for IMS
+service imsd /system/bin/imsd
+    class main
+    socket imsd stream 0660 system system
+    socket sme_socket stream 0660 system system
+    user root
+    group system radio net_raw inet net_admin
+
+
+# SIMLock Daemon
+on property:sys.mobicoredaemon.enable=true
+	start tsdaemon
+	service tsdaemon /system/bin/tsdaemon
+	class core
+	user system
+	group system
+        oneshot
+	disabled
